@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace resimesle.Properties
+namespace ImageMatching.Properties
 {
 
 

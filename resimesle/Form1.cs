@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace resimesle
+namespace ImageMatching
 {
     public partial class Form1 : Form
     {
@@ -67,8 +67,8 @@ namespace resimesle
 
                 if (img1.Width == img2.Width && img1.Height == img2.Height)
                 {
-                    int count2 = 0;
-                    int count1 = 0;
+
+
                     bool flag = false;
                     for (int i = 0; i < img1.Width; i++)//Ex:300
                     {
@@ -78,7 +78,6 @@ namespace resimesle
                             string img2_ref = img2.GetPixel(i, j).ToString();
                             if (img1_ref != img2_ref)
                             {
-                                count2++;
                                 flag = false;
                                 break;
                             }
@@ -99,21 +98,7 @@ namespace resimesle
             {
                 MessageBox.Show("You must choose picture.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
 
-
-        }
-        public void GetPixel_Example()
-        {
-
-            // Create a Bitmap object from an image file.
-            Bitmap myBitmap = (Bitmap)pictureBox1.Image;
-            Bitmap myBitmap2 = (Bitmap)pictureBox2.Image;
-            // Get the color of a pixel within myBitmap.
-            Color pixelColor = myBitmap.GetPixel(55, 55);
-            Color pixelColor2 = myBitmap2.GetPixel(55, 55);
-            label2.Text = pixelColor.ToString();
-            label3.Text = pixelColor2.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
