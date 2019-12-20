@@ -12,50 +12,27 @@ namespace ImageMatching
 {
     public partial class Form1 : Form
     {
+        private readonly MethodOfFormsElement _methodOfFormsElement;
 
         public Form1()
         {
+        }
+
+        public Form1(MethodOfFormsElement methodOfFormsElement)
+        {
+            _methodOfFormsElement = methodOfFormsElement;
+
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                OpenFileDialog file = new OpenFileDialog();
-
-                if (file.ShowDialog() == DialogResult.OK)
-                {
-
-                    pictureBox1.Image = Image.FromFile(file.FileName);
-                }
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            _methodOfFormsElement.uploadImage(pictureBox1.Image);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                OpenFileDialog file2 = new OpenFileDialog();
-
-                if (file2.ShowDialog() == DialogResult.OK)
-                {
-
-                    pictureBox2.Image = Image.FromFile(file2.FileName);
-                }
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            _methodOfFormsElement.uploadImage(pictureBox2.Image);
         }
 
         private void button3_Click(object sender, EventArgs e)
