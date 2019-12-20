@@ -16,13 +16,12 @@ namespace ImageMatching
 
         public Form1()
         {
+            InitializeComponent();
         }
 
-        public Form1(MethodOfFormsElement methodOfFormsElement)
+        public Form1(MethodOfFormsElement methodOfFormsElement) : this()
         {
             _methodOfFormsElement = methodOfFormsElement;
-
-            InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
