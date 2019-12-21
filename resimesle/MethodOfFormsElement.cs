@@ -1,33 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using resimesle;
 
 namespace ImageMatching
 {
-    public class MethodOfFormsElement
+    class MethodOfFormsElement
     {
-        public void uploadImage(object pictureBox)
+        private Form1 _form1;
+
+        public MethodOfFormsElement(Form1 form1)
         {
-            try
-            {
-                OpenFileDialog file = new OpenFileDialog();
-
-                if (file.ShowDialog() == DialogResult.OK)
-                {
-
-                    pictureBox = Image.FromFile(file.FileName);
-                }
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            _form1 = form1;
         }
     }
 }
