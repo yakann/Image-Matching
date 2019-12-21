@@ -1,18 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
-namespace ImageMatching
+namespace resimesle
 {
-    class MethodOfFormsElement
+    public class MethodOfFormsElement
     {
-        private Form1 _form1;
-
-        public MethodOfFormsElement(Form1 form1)
+        public void UploadImage(PictureBox picturebox)
         {
-            _form1 = form1;
+            try
+            {
+                //Get all image path in folder.
+                string[] filePaths = Directory.GetFiles(@"C:\Users\mahmu\OneDrive\Masaüstü\imageler", "*.jpg",
+                    SearchOption.TopDirectoryOnly);
+                foreach (var path_img in filePaths)
+                {
+                    picturebox.Image = Image.FromFile(path_img);
+                }
+                
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
