@@ -102,5 +102,29 @@ namespace ImageMatching
                 MessageBox.Show("You must choose picture.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var fbd = new FolderBrowserDialog())
+                {
+                    DialogResult result = fbd.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    {
+                        string[] files = Directory.GetFiles(fbd.SelectedPath);
+                        checkedListBox1.Items.Add(fbd.SelectedPath.Split('\\').Last());
+                    }
+                }
+                
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
