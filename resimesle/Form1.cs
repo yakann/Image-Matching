@@ -14,7 +14,8 @@ namespace ImageMatching
 {
     public partial class Form1 : Form
     {
-        private bool flag = false;
+        private bool _flag = false;
+        private int _count = 0;
         private readonly MethodOfFormsElement _methodOfFormsElement;
         public Form1()
         {
@@ -26,26 +27,6 @@ namespace ImageMatching
             _methodOfFormsElement = methodOfFormsElement;
         }
 
-        private void ImageMethod(string[] filePaths)
-        {
-            for (int i = 0; i < filePaths.Length; i++)
-            {
-                pictureBox1.Image = Image.FromFile(filePaths[i]);
-                for (int j = i + 1; j < filePaths.Length; j++)
-                {
-                    pictureBox2.Image = Image.FromFile(filePaths[j]);
-                    CompareImage();
-                    if (this.flag == false)
-                    {
-                        MessageBox.Show("Farklı resimler");
-                    }
-                    else if (this.flag == true)
-                    {
-                        MessageBox.Show("Aynı resim bunlar");
-                    }
-                }
-            }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -53,21 +34,39 @@ namespace ImageMatching
                 //Get all image path in folder.
                 string[] filePaths = Directory.GetFiles(@"C:\Users\mahmu\OneDrive\Masaüstü\imageler", "*.jpg",
                     SearchOption.TopDirectoryOnly);
-
                 ImageMethod(filePaths);
+                label1.Text = "Finished..";
+                label2.Text = this._count.ToString();
+
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            _methodOfFormsElement.UploadImage(pictureBox2);
-        }
 
+        }
+        private void ImageMethod(string[] filePaths)
+        {
+            for (int i = 0; i < filePaths.Length; i++)
+            {
+                pictureBox1.Image = Image.FromFile(filePaths[i].ToString());
+                for (int j = i + 1; j < filePaths.Length; j++)
+                {
+
+                    pictureBox2.Image = Image.FromFile(filePaths[j].ToString());
+                    CompareImage();
+                    if (this._flag != false)
+                        MessageBox.Show(" Images are same.");
+                }
+
+                this._flag = false;
+            }
+
+        }
         private void CompareImage()
         {
             try
@@ -77,9 +76,6 @@ namespace ImageMatching
 
                 if (img1.Width == img2.Width && img1.Height == img2.Height)
                 {
-
-
-                    
                     for (int i = 0; i < img1.Width; i++)//Ex:300
                     {
                         for (int j = 0; j < img1.Height; j++)//Ex:500
@@ -88,30 +84,23 @@ namespace ImageMatching
                             string img2_ref = img2.GetPixel(i, j).ToString();
                             if (img1_ref != img2_ref)
                             {
-                                flag = false;
+                                this._flag = false;
                                 break;
                             }
 
-                            flag = true;
+                            this._flag = true;
                         }
                     }
-
+                    if (this._flag == true)
+                    {
+                        this._count += 1;
+                    }
                 }
-                this.Dispose();
             }
             catch (Exception)
             {
                 MessageBox.Show("You must choose picture.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
