@@ -16,13 +16,16 @@ namespace ImageMatching
     {
         private bool _flag = false;
         private int _count = 0;
+
+        public List<string> PathList { get; set; }
+
         private readonly MethodOfFormsElement _methodOfFormsElement;
         public Form1()
         {
             InitializeComponent();
         }
 
-        public Form1(MethodOfFormsElement methodOfFormsElement):this()
+        public Form1(MethodOfFormsElement methodOfFormsElement) : this()
         {
             _methodOfFormsElement = methodOfFormsElement;
         }
@@ -103,8 +106,10 @@ namespace ImageMatching
             }
         }
 
+        
         private void button2_Click(object sender, EventArgs e)
         {
+
             try
             {
                 using (var fbd = new FolderBrowserDialog())
@@ -113,18 +118,32 @@ namespace ImageMatching
 
                     if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                     {
-                        string[] files = Directory.GetFiles(fbd.SelectedPath);
+                        //string[] files = Directory.GetFiles(fbd.SelectedPath);
+                        label1.Text = fbd.SelectedPath;
                         checkedListBox1.Items.Add(fbd.SelectedPath.Split('\\').Last());
                     }
+                    PathList.Add(fbd.SelectedPath);
                 }
-                
-
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int i;
+            string s;
+            s = "Checked items:\n";
+            for (i = 0; i <= (checkedListBox1.Items.Count - 1); i++)
+            {
+                if (checkedListBox1.GetItemChecked(i))
+                {
+                    s = s + "Item " + (i + 1).ToString() + " = " + checkedListBox1.Items[i].ToString() + "\n";
+                }
+            }
+            MessageBox.Show(s);
         }
     }
 }
