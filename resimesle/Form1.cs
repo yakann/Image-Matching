@@ -17,7 +17,7 @@ namespace ImageMatching
         private bool _flag = false;
         private int _count = 0;
 
-        public List<string> PathList { get; set; }
+        public List<string> PathList = new List<string>();
 
         private readonly MethodOfFormsElement _methodOfFormsElement;
         public Form1()
@@ -106,10 +106,8 @@ namespace ImageMatching
             }
         }
 
-        
-        private void button2_Click(object sender, EventArgs e)
+        private void AddPathName()
         {
-
             try
             {
                 using (var fbd = new FolderBrowserDialog())
@@ -118,11 +116,11 @@ namespace ImageMatching
 
                     if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                     {
+                        PathList.Add(fbd.SelectedPath.ToString());
                         //string[] files = Directory.GetFiles(fbd.SelectedPath);
-                        label1.Text = fbd.SelectedPath;
+
                         checkedListBox1.Items.Add(fbd.SelectedPath.Split('\\').Last());
                     }
-                    PathList.Add(fbd.SelectedPath);
                 }
             }
             catch (Exception)
@@ -130,20 +128,19 @@ namespace ImageMatching
                 MessageBox.Show("Hata Oluştu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddPathName();
+
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int i;
-            string s;
-            s = "Checked items:\n";
-            for (i = 0; i <= (checkedListBox1.Items.Count - 1); i++)
+            foreach (var item in checkedListBox1.Items)
             {
-                if (checkedListBox1.GetItemChecked(i))
-                {
-                    s = s + "Item " + (i + 1).ToString() + " = " + checkedListBox1.Items[i].ToString() + "\n";
-                }
+                label1.Text = PathList[0];
             }
-            MessageBox.Show(s);
+            
         }
     }
 }
