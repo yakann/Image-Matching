@@ -74,17 +74,19 @@ namespace ImageMatching
             for (int i = 0; i < filePaths1.Length; i++)
             {
                 pictureBox1.Image = Image.FromFile(filePaths1[i].ToString());
-                int counter = 0;
-                for (int j = i + 1; j < filePaths1.Length; j++)
+                for (int t = 0; t < PathList.Count; t++)
                 {
-                    string[] filePaths2 = GetPath(counter);
-                    pictureBox2.Image = Image.FromFile(filePaths2[j].ToString());
-                    CompareImage();
-                    if (this._flag != false)
-                        MessageBox.Show(" Images are same.");
+                    string[] filePaths2 = GetPath(t);
+                    
+                    for (int j = 0; j < filePaths2.Length; j++)
+                    {
+                        pictureBox2.Image = Image.FromFile(filePaths2[j].ToString());
+                        CompareImage();
+                        if (this._flag != false)
+                            MessageBox.Show(" Images are same.");
+                    }
                 }
 
-                counter += 1;
                 this._flag = false;
             }
 
@@ -133,12 +135,15 @@ namespace ImageMatching
                 {
                     DialogResult result = fbd.ShowDialog();
 
-                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath) && PathList.Contains(fbd.SelectedPath)==false)
                     {
                         PathList.Add(fbd.SelectedPath.ToString());
                         //string[] files = Directory.GetFiles(fbd.SelectedPath);
-
                         checkedListBox1.Items.Add(fbd.SelectedPath.Split('\\').Last());
+                    }
+                    else
+                    {
+                        MessageBox.Show("This folder already exist.");
                     }
                 }
             }
