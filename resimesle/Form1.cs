@@ -34,10 +34,14 @@ namespace ImageMatching
         {
             try
             {
+                foreach (var path in PathList)
+                {
+                    
+                    ImageMethod(GetPath(path));
+
+                }
                 //Get all image path in folder.
-                string[] filePaths = Directory.GetFiles(@"C:\Users\mahmu\OneDrive\Masaüstü\imageler", "*.jpg",
-                    SearchOption.TopDirectoryOnly);
-                ImageMethod(filePaths);
+                
                 label1.Text = "Finished..";
                 label2.Text = this._count.ToString();
 
@@ -52,20 +56,35 @@ namespace ImageMatching
         {
 
         }
-        private void ImageMethod(string[] filePaths)
-        {
-            for (int i = 0; i < filePaths.Length; i++)
-            {
-                pictureBox1.Image = Image.FromFile(filePaths[i].ToString());
-                for (int j = i + 1; j < filePaths.Length; j++)
-                {
 
-                    pictureBox2.Image = Image.FromFile(filePaths[j].ToString());
+        private string[] GetPath(string val)
+        {
+            string[] filePaths = Directory.GetFiles(val, "*.jpg",
+                SearchOption.TopDirectoryOnly);
+            return filePaths;
+        }
+        private string[] GetPath(int val)
+        {
+            string[] filePaths = Directory.GetFiles(this.PathList[val], "*.jpg",
+                SearchOption.TopDirectoryOnly);
+            return filePaths;
+        }
+        private void ImageMethod(string[] filePaths1)
+        {
+            for (int i = 0; i < filePaths1.Length; i++)
+            {
+                pictureBox1.Image = Image.FromFile(filePaths1[i].ToString());
+                int counter = 0;
+                for (int j = i + 1; j < filePaths1.Length; j++)
+                {
+                    string[] filePaths2 = GetPath(counter);
+                    pictureBox2.Image = Image.FromFile(filePaths2[j].ToString());
                     CompareImage();
                     if (this._flag != false)
                         MessageBox.Show(" Images are same.");
                 }
 
+                counter += 1;
                 this._flag = false;
             }
 
