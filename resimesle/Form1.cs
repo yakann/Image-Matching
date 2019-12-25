@@ -36,12 +36,12 @@ namespace ImageMatching
             {
                 foreach (var path in PathList)
                 {
-                    
+
                     ImageMethod(GetPath(path));
 
                 }
                 //Get all image path in folder.
-                
+
                 label1.Text = "Finished..";
                 label2.Text = this._count.ToString();
 
@@ -77,13 +77,21 @@ namespace ImageMatching
                 for (int t = 0; t < PathList.Count; t++)
                 {
                     string[] filePaths2 = GetPath(t);
-                    
+
                     for (int j = 0; j < filePaths2.Length; j++)
                     {
                         pictureBox2.Image = Image.FromFile(filePaths2[j].ToString());
                         CompareImage();
                         if (this._flag != false)
+                        {
                             MessageBox.Show(" Images are same.");
+                            this._flag = false;
+                        }
+                        else if (this._flag == false)
+                        {
+                            MessageBox.Show(" Images are not same.");
+                        }
+
                     }
                 }
 
@@ -114,6 +122,10 @@ namespace ImageMatching
 
                             this._flag = true;
                         }
+                        if (this._flag == true)
+                        {
+                            break;
+                        }
                     }
                     if (this._flag == true)
                     {
@@ -135,7 +147,7 @@ namespace ImageMatching
                 {
                     DialogResult result = fbd.ShowDialog();
 
-                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath) && PathList.Contains(fbd.SelectedPath)==false)
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath) && PathList.Contains(fbd.SelectedPath) == false)
                     {
                         PathList.Add(fbd.SelectedPath.ToString());
                         //string[] files = Directory.GetFiles(fbd.SelectedPath);
@@ -164,7 +176,7 @@ namespace ImageMatching
             {
                 label1.Text = PathList[0];
             }
-            
+
         }
     }
 }
