@@ -74,6 +74,7 @@ namespace ImageMatching
             for (int i = 0; i < filePaths1.Length; i++)
             {
                 pictureBox1.Image = Image.FromFile(filePaths1[i].ToString());
+                label8.Text = filePaths1[i].Split('\\').Last();
                 for (int t = 0; t < PathList.Count; t++)
                 {
                     string[] filePaths2 = GetPath(t);
@@ -81,16 +82,14 @@ namespace ImageMatching
                     for (int j = 0; j < filePaths2.Length; j++)
                     {
                         pictureBox2.Image = Image.FromFile(filePaths2[j].ToString());
+                        label7.Text = filePaths1[j].Split('\\').Last();
                         CompareImage();
                         if (this._flag != false)
                         {
                             MessageBox.Show(" Images are same.");
                             this._flag = false;
                         }
-                        else if (this._flag == false)
-                        {
-                            MessageBox.Show(" Images are not same.");
-                        }
+
 
                     }
                 }
