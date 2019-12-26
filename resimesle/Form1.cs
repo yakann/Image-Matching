@@ -177,5 +177,10 @@ namespace ImageMatching
             }
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            checkedListBox1.Items.Clear();
+        }
     }
 }

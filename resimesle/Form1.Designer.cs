@@ -42,6 +42,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -124,7 +125,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(15, 338);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(207, 64);
+            this.button2.Size = new System.Drawing.Size(101, 64);
             this.button2.TabIndex = 4;
             this.button2.Text = "SELECT FOLDER";
             this.button2.UseVisualStyleBackColor = true;
@@ -173,11 +174,22 @@
             this.label8.Size = new System.Drawing.Size(0, 13);
             this.label8.TabIndex = 1;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(122, 338);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 64);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "CLEAR";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkedListBox1);
@@ -218,6 +230,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button4;
     }
 }
 
