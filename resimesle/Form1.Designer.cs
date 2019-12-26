@@ -43,6 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.SelectAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -118,14 +119,14 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(15, 71);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(207, 244);
+            this.checkedListBox1.Size = new System.Drawing.Size(208, 244);
             this.checkedListBox1.TabIndex = 3;
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(15, 338);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 64);
+            this.button2.Size = new System.Drawing.Size(100, 60);
             this.button2.TabIndex = 4;
             this.button2.Text = "SELECT FOLDER";
             this.button2.UseVisualStyleBackColor = true;
@@ -176,19 +177,30 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(122, 338);
+            this.button4.Location = new System.Drawing.Point(123, 338);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 64);
+            this.button4.Size = new System.Drawing.Size(100, 60);
             this.button4.TabIndex = 6;
             this.button4.Text = "CLEAR";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // SelectAll
+            // 
+            this.SelectAll.Location = new System.Drawing.Point(229, 71);
+            this.SelectAll.Name = "SelectAll";
+            this.SelectAll.Size = new System.Drawing.Size(64, 47);
+            this.SelectAll.TabIndex = 7;
+            this.SelectAll.Text = "Select All";
+            this.SelectAll.UseVisualStyleBackColor = true;
+            this.SelectAll.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SelectAll);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -231,6 +243,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button SelectAll;
     }
 }
 

@@ -180,7 +180,37 @@ namespace ImageMatching
 
         private void button4_Click(object sender, EventArgs e)
         {
-            checkedListBox1.Items.Clear();
+            foreach (var item in checkedListBox1.Items)
+            {
+                if (item.Equals(true))
+                {
+                    MessageBox.Show("true");
+                }
+            }
+            checkedListBox1.CheckOnClick = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int sub = checkedListBox1.Items.Count;
+            
+
+            if (SelectAll.Text == "Deselect")
+            {
+                for (int i = 0; i < sub; i++)
+                {
+                    checkedListBox1.SetItemChecked(i, false);
+                }
+                SelectAll.Text = "All Select";
+            }
+            else
+            {
+                for (int i = 0; i < sub; i++)
+                {
+                    checkedListBox1.SetItemChecked(i, true);
+                }
+                SelectAll.Text = "Deselect";
+            }
         }
     }
 }
