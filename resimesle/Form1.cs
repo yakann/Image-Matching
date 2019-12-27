@@ -34,10 +34,17 @@ namespace ImageMatching
         {
             try
             {
+                //for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                //{
+                //    checkedListBox1.SetItemChecked(i, true);
+                //}
+                
+
                 foreach (var path in PathList)
                 {
 
                     ImageMethod(GetPath(path));
+
 
                 }
                 //Get all image path in folder.
@@ -180,14 +187,7 @@ namespace ImageMatching
 
         private void button4_Click(object sender, EventArgs e)
         {
-            foreach (var item in checkedListBox1.Items)
-            {
-                if (item.Equals(true))
-                {
-                    MessageBox.Show("true");
-                }
-            }
-            checkedListBox1.CheckOnClick = false;
+            checkedListBox1.Items.Clear();
         }
 
         private void button5_Click(object sender, EventArgs e)
