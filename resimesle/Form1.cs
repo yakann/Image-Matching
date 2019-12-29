@@ -30,13 +30,20 @@ namespace ImageMatching
         {
             _methodOfFormsElement = methodOfFormsElement;
         }
-        
+
+        private void changeList()
+        {
+            foreach (var t in PathList)
+            {
+                PathList2.Add(t);
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
                 string falseText;
-                PathList2 = PathList;
+                changeList();
                 
                 for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 {
@@ -53,8 +60,8 @@ namespace ImageMatching
 
                     ImageMethod(GetPath(path));
 
-
                 }
+                PathList2.Clear();
                 //Get all image path in folder.
 
                 label1.Text = "Finished..";
