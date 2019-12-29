@@ -18,6 +18,7 @@ namespace ImageMatching
         private int _count = 0;
 
         public List<string> PathList = new List<string>();
+        public List<string> PathList2 = new List<string>();
 
         private readonly MethodOfFormsElement _methodOfFormsElement;
         public Form1()
@@ -29,18 +30,25 @@ namespace ImageMatching
         {
             _methodOfFormsElement = methodOfFormsElement;
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                //for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                //{
-                //    checkedListBox1.SetItemChecked(i, true);
-                //}
+                string falseText;
+                PathList2 = PathList;
                 
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                {
+                    if (checkedListBox1.GetItemChecked(i) == false)
+                    {
+                        falseText = checkedListBox1.Items[i].ToString();
+                        PathList2.RemoveAll(x => x.Contains(falseText));
+                    }
+                }
 
-                foreach (var path in PathList)
+
+                foreach (var path in PathList2)
                 {
 
                     ImageMethod(GetPath(path));
@@ -157,7 +165,7 @@ namespace ImageMatching
                     {
                         PathList.Add(fbd.SelectedPath.ToString());
                         //string[] files = Directory.GetFiles(fbd.SelectedPath);
-                        checkedListBox1.Items.Add(fbd.SelectedPath.Split('\\').Last());
+                        checkedListBox1.Items.Add(fbd.SelectedPath.Split('\\').Last(),true);
                     }
                     else
                     {
