@@ -50,7 +50,14 @@ namespace ImageMatching
                     if (checkedListBox1.GetItemChecked(i) == false)
                     {
                         falseText = checkedListBox1.Items[i].ToString();
-                        PathList2.RemoveAll(x => x.Contains(falseText));
+                        for (int j = 0; j < PathList2.Count; j++)
+                        {
+                            if (PathList2[j].Split('\\').Last()==falseText)
+                            {
+                                PathList2.RemoveAt(i);
+                            }
+
+                        }
                     }
                 }
 
